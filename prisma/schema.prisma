@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Group {
+  id    Int     @default(autoincrement()) @id
+  title String
+  debts Debt[]
+  assets Asset[]
+  @@map(name: "groups")
+}
+
+model Debt {
+  id    Int     @default(autoincrement()) @id
+  title String
+  price Int
+  group   Group?  @relation(fields: [groupId], references: [id])
+  groupId Int?
+  @@map(name: "debts")
+}
+
+model Asset {
+  id      Int     @default(autoincrement()) @id
+  title   String
+  price   Int
+  group   Group?  @relation(fields: [groupId], references: [id])
+  groupId Int?
+  @@map(name: "assets")
+}
