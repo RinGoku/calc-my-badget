@@ -4,7 +4,11 @@
 
 	// see https://kit.svelte.dev/docs#loading
 	export const load: Load = async ({ fetch }) => {
-		const res = await fetch('/api/asset');
+		const res = await fetch('/api/asset.json', {
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
 
 		if (res.ok) {
 			const todos = await res.json();
@@ -34,8 +38,7 @@
 		if (assetName.length === 0) {
 			return;
 		}
-		debugger;
-		const res = await fetch('/api/asset', {
+		const res = await fetch('/api/asset.json', {
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json'
