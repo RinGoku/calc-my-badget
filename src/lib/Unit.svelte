@@ -9,7 +9,7 @@
 		isEditMode = !isEditMode;
 	};
 	$: update = async () => {
-		await fetch('/todos/asset', {
+		await fetch('/api/asset', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -19,7 +19,7 @@
 		editON();
 	};
 	$: deleteAsset = async () => {
-		await fetch('/todos/asset', {
+		await fetch('/api/asset', {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
